@@ -7,10 +7,32 @@
     <body>
     {% include "blog/navbar.html" %}
         <div class="page-header">
-            <h1><a href="/">Django Girls Blog</a></h1>
             <a href="{%url 'post_new'%}" class="top-menu">Criar</a>
-        </div>
+            <h1><a href="/">Django Girls Blog</a></h1>
 
+        </div>
+        <div>
+
+            <h1>Tomorrowland</h1>
+
+            <p>Tomorrowland é um festival de música realizado anualmente na Bélgica, Brasil, Estados Unidos e França. </br>
+                A edição principal é realizada em Boom, cidade com menos de 20 mil habitantes, no distrito de Antuérpia.</br>
+                A edição brasileira foi anunciada em 20 de julho de 2014, e foi realizada na cidade de Itu, São Paulo, até 2016.</br>
+                Nos Estados Unidos, conta com outro nome, TomorrowWorld. Sendo esta edição norte-americana realizada, até 2015,</br>
+                na cidade de Atlanta, Geórgia. Em 2019, o festival ganhará sua primeira edição de Inverno, na França.</p>
+
+            <p>Segundo a produtora, a ideia sempre foi fazer algo semelhante ao mundo da Disney. Durantes suas primeiras edições,</br>
+                que aplicava o lema "Yesterday is History, Today is a Gift, Tomorrow is Mystery" (Ontem é História, Hoje é uma dádiva,</br>
+                Amanha é mistério). Nos outros anos, este lema foi sendo trocado pelo "Live Today, Love Tomorrow, Unite Forever" </br>
+                (Viva hoje, Ame amanhã, Unidos para sempre). No festival, além do palco principal, existem mais 16 palcos explorando</br>
+                diferentes estilos de música eletrônica desde o mainstream até o underground.</p>
+
+
+            <a href=""><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/DiqDE3lX4AEYVTk_%281%29.jpg/1024px-DiqDE3lX4AEYVTk_%281%29.jpg" class="img-fluid"/></a><br/>
+
+
+
+        </div>
         </div>
         <div class="content container">
                 <div class="row">
@@ -21,6 +43,7 @@
                 </div>
 
         </div>
+
     {% include "footer.html" %}
 
     </body>

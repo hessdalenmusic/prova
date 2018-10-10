@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.timezone import localdate
 from django.views.defaults import bad_request, server_error
-from .models import Event, Comment
+from .models import Event, Comment,Cadastro, timezone
 from .forms import EventForm, CommentForm
 
 from datetime import datetime, timedelta
@@ -128,3 +128,59 @@ def show(request, id: int):
             'today': localdate(),
     }
     return render(request, 'show.html', context)
+
+
+
+
+# Create your views here.
+
+def cad_list(request):
+    posts = Cadastro.objects.all()
+    return render(request, 'cad_list.html', {'posts': posts})
+
+def cad_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'cad_detail.html', {'post': post})
+
+def cad_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('cad_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'cad_edit.html', {'form': form})
+
+def day():
+    day = datetime(localdate().year,localdate().month,localdate().day)
+    context = {
+        'events': Event.objects.filter(
+            date='{:%Y-%m-%d}'.format(day)).order_by('-priority', 'event'),
+    }
+
+
+def cad_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('cad_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+
+    day = datetime(localdate().year, localdate().month, localdate().day)
+    context = {
+        'events': Event.objects.filter(
+            date='{:%Y-%m-%d}'.format(day)).order_by('-priority', 'event'),
+        'form': form
+    }
+
+    return render(request, 'cad_edit.html', context)

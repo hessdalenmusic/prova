@@ -46,3 +46,30 @@ class Comment(models.Model):
 
     def __str__(self):
         return "{} commentou em {:%c}".format(self.author, self.commented)
+
+
+class Cadastro(models.Model):
+
+    sexy_list = (
+        ('0', 'Masculino'),
+        ('1', 'Feminino'),
+    )
+
+    nacao_list = (
+        ('0', 'Brasileiro'),
+        ('1', 'USA'),
+        ('2', 'Japão'),
+        ('3', 'Coreano'),
+    )
+
+    nome = models.CharField(max_length=160)
+    data_nasc = models.DateField()
+    email = models.CharField(max_length=160)
+    cidade = models.CharField(max_length=160)
+    nacionalidade = models.CharField(max_length=160)
+
+    sexy = models.CharField(max_length=1, choices=sexy_list)
+
+    nacao = models.CharField(max_length=1, choices=nacao_list)
+
+

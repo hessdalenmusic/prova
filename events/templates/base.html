@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="pt_BR">
+
+    {% include "header.html" %}
+    <body>
+    {% include "navbar.html" %}
+        <div class="page-header">
+            <h1><a href="/">Cadastro</a></h1>
+
+        <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+
+        </div>
+
+    {% include "footer.html" %}
+
+    </body>
+</html>

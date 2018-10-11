@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.timezone import localdate
 from django.views.defaults import bad_request, server_error
 from .models import Event, Comment,Cadastro, timezone
-from .forms import EventForm, CommentForm
+from .forms import EventForm, CommentForm, CadastroForm
 
 from datetime import datetime, timedelta
 
@@ -139,12 +139,12 @@ def cad_list(request):
     return render(request, 'cad_list.html', {'posts': posts})
 
 def cad_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Cadastro, pk=pk)
     return render(request, 'cad_detail.html', {'post': post})
 
 def cad_new(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = CadastroForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -152,7 +152,7 @@ def cad_new(request):
             post.save()
             return redirect('cad_detail', pk=post.pk)
     else:
-        form = PostForm()
+        form = CadastroForm()
     return render(request, 'cad_edit.html', {'form': form})
 
 def day():

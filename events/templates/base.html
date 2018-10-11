@@ -7,9 +7,10 @@
     <body>
     {% include "navbar.html" %}
         <div class="page-header">
-            <h1><a href="/">Cadastro</a></h1>
-
+            <h1><a href="{% url 'cad_new' %}">Cadastro</a></h1>
         <div class="content container">
+
+            <a href="{% url 'cad_new' %}" class="top-menu">criar</a>
                 <div class="row">
                     <div class="col-md-8">
                     {% block content %}
